@@ -9,7 +9,7 @@ from selene_sdk import sequences
 
 
 class Puffin(nn.Module):
-    def __init__(self, use_cuda=False):
+    def __init__(self, use_cuda=False, model_path=None):
 
         super(Puffin, self).__init__()
         self.conv = nn.Conv1d(4, 10, kernel_size=51, padding=25)
@@ -64,7 +64,9 @@ class Puffin(nn.Module):
             "Long Inr-": "#dde1ea",
         }
 
-        model_path = "./resources/puffin.pth"
+        if model_path is None:
+            model_path = "./resources/puffin.pth"
+            
 
         self.state_dict = torch.load(model_path, map_location=torch.device("cpu"))
         self.load_state_dict(self.state_dict, strict=False)

@@ -4,3 +4,5 @@ torch
 docopt
 selene_sdk
 torch_fftconv
+biopython
+pybedtools
