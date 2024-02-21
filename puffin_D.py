@@ -24,7 +24,7 @@ class ConvBlock(nn.Module):
 
 
 class Puffin_D(nn.Module):
-    def __init__(self, use_cuda=False):
+    def __init__(self, use_cuda=False, model_path=None):
 
         super(Puffin_D, self).__init__()
         self.uplblocks = nn.ModuleList(
@@ -261,7 +261,9 @@ class Puffin_D(nn.Module):
         )
 
         self.use_cuda = use_cuda
-        model_path = "./resources/puffin_D.pth"
+        if model_path is None:
+            model_path = "./resources/puffin.pth"
+        
         if self.use_cuda:
             self.load_state_dict(torch.load(model_path))
         else:
